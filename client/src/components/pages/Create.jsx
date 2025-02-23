@@ -86,10 +86,10 @@ const CreateNews = () => {
             required
           >
             <option value="">Select a category</option>
-            <option value="sports">Sports</option>
-            <option value="technology">Technology</option>
-            <option value="politics">Politics</option>
-            <option value="health">Health</option>
+            <option value="sports">sports</option>
+            <option value="technology">tech</option>
+            <option value="politics">world</option>
+            <option value="health">business</option>
           </select>
         </div>
 
