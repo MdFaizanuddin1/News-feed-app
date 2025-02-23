@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { create } from "../../routes";
 
 const CreateNews = () => {
   const [newsData, setNewsData] = useState({
@@ -24,7 +25,7 @@ const CreateNews = () => {
     setMessage("");
 
     try {
-      const response = await axios.post("/api/v1/news/create", newsData, {
+      const response = await axios.post(`${create}`, newsData, {
         withCredentials: true, // Send cookies for authentication
         headers: { "Content-Type": "application/json" }
       });

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { users } from "../routes";
 
 const initialState = {
   currentUser: null,
@@ -12,7 +13,7 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     // console.log(userData);
     try {
-      const response = await axios.post("/api/v1/users/register", userData);
+      const response = await axios.post(`${users}/register`, userData);
       // console.log("response is", response);
       return response.data;
     } catch (error) {
@@ -25,7 +26,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   // console.log(user);
   try {
-    const response = await axios.post("/api/v1/users/login", user);
+    const response = await axios.post(`${users}/login`, user);
     // console.log("response is", response);
     return response.data;
   } catch (error) {
@@ -39,7 +40,7 @@ export const getCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = localStorage.getItem("token") ?? "";
-      const response = await axios.get("/api/v1/users/getUser", {
+      const response = await axios.get(`${users}/getUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +56,7 @@ export const getCurrentUser = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    const response = axios.get("/api/v1/users/logout");
+    const response = axios.get(`${users}/logout`);
     localStorage.removeItem("token");
     return response.data;
   } catch (error) {
