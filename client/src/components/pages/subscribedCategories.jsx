@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { subscribed } from "../../routes";
+import { subscribed , categoryBy} from "../../routes";
 
 const NewsFeed = () => {
   const [subscribedCategories, setSubscribedCategories] = useState([]);
@@ -8,7 +8,7 @@ const NewsFeed = () => {
   const [loading, setLoading] = useState(true);
 
   // Configure Axios to include cookies in requests
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
 
   // Fetch Subscribed Categories
   useEffect(() => {
@@ -39,7 +39,7 @@ const NewsFeed = () => {
         const newsResults = {};
         for (const category of subscribedCategories) {
           const response = await axios.get(
-            `${category}=${category}`,
+            `${categoryBy}=${category}`,
             {
               withCredentials: true,
             }
