@@ -25,9 +25,13 @@ const CreateNews = () => {
     setMessage("");
 
     try {
+      const token = localStorage.getItem("token") ?? "";
       const response = await axios.post(`${create}`, newsData, {
         withCredentials: true, // Send cookies for authentication
-        headers: { "Content-Type": "application/json" }
+        // headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.status === 201) {
@@ -46,7 +50,11 @@ const CreateNews = () => {
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Create News</h2>
 
-      {message && <p className="text-center text-lg font-semibold text-green-600">{message}</p>}
+      {message && (
+        <p className="text-center text-lg font-semibold text-green-600">
+          {message}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}
