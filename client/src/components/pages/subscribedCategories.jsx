@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { subscribed , categoryBy} from "../../routes";
+import { subscribed, categoryBy } from "../../routes";
 
 const NewsFeed = () => {
   const [subscribedCategories, setSubscribedCategories] = useState([]);
@@ -14,12 +14,13 @@ const NewsFeed = () => {
   useEffect(() => {
     const fetchSubscribedCategories = async () => {
       try {
-        const response = await axios.get(
-          `${subscribed}`,
-          {
-            withCredentials: true, // Ensures cookies are sent with the request
-          }
-        );
+        const token = localStorage.getItem("token") ?? "";
+        const response = await axios.get(`${subscribed}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // Ensures cookies are sent with the request
+        });
         console.log("Subscribed Categories Response:", response);
         setSubscribedCategories(response.data.data || []);
       } catch (error) {
@@ -38,17 +39,13 @@ const NewsFeed = () => {
       try {
         const newsResults = {};
         for (const category of subscribedCategories) {
-          const response = await axios.get(
-            `${categoryBy}=${category}`,
-            {
-              withCredentials: true,
-            }
-          );
+          const response = await axios.get(`${categoryBy}=${category}`, {
+            withCredentials: true,
+          });
           newsResults[category] = response.data.data || [];
           // console.log('res is',response)
         }
         setNewsData(newsResults);
-
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {

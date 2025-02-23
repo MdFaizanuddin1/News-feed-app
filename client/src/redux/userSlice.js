@@ -28,7 +28,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   // console.log(user);
   try {
-    const response = await axios.post(`${users}/login`, user,{
+    const response = await axios.post(`${users}/login`, user, {
       withCredentials: true, // Important for sending & receiving cookies
     });
     // console.log("response is", response);
@@ -48,7 +48,6 @@ export const getCurrentUser = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },{
         withCredentials: true, // Important for sending & receiving cookies
       });
       // console.log("response is", response);
