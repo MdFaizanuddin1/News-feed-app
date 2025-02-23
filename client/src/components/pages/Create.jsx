@@ -27,7 +27,7 @@ const CreateNews = () => {
     try {
       const response = await axios.post(`${create}`, newsData, {
         withCredentials: true, // Send cookies for authentication
-        // headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
       });
 
       if (response.status === 201) {
