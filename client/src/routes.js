@@ -16,6 +16,7 @@
 import io from "socket.io-client";
 
 export const API_BASE_URL = "https://news-feed-app-xfgn.onrender.com";
+// export const API_BASE_URL = "http://localhost:5173";
 
 export const API_URL = `${API_BASE_URL}/api/v1/news/getAll`;
 

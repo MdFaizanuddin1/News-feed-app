@@ -95,9 +95,9 @@ const CreateNews = () => {
           >
             <option value="">Select a category</option>
             <option value="sports">sports</option>
-            <option value="technology">tech</option>
-            <option value="politics">world</option>
-            <option value="health">business</option>
+            <option value="tech">tech</option>
+            <option value="world">world</option>
+            <option value="business">business</option>
           </select>
         </div>
 
